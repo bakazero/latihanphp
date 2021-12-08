@@ -22,23 +22,11 @@ $data = [
 //     $z++;
 // } while ($z < 0);
 
-// die;
+for ($i = 0; $i < count($data); $i++) {
+    print_r($data[$i]);
+    echo '<br>';
+}
 
-
-
-// $data[] = 'item baru';
-// $data[0] = 'item baru lagi';
-// $data[3] = [
-//     'ini array baru lagi',
-//     'Eu consequat qui officia nulla consequat.',
-// ];
-
-// for ($i = 0; $i < count($array); $i++) {
-//     print_r($array[$i]);
-//     echo '<br>';
-// }
-
-// print_r('D' < 'C');
 // die;
 
 $array = [
@@ -50,7 +38,6 @@ $array = [
 ];
 
 foreach ($array as $key => $value) {
-
     print_r("{$key} - {$value}");
     echo '<br>';
 }
