@@ -16,3 +16,4 @@ if ($nilai > 80) {
 $result = $rank;
 
 print_r($result);
+// echo $result;
