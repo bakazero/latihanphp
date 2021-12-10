@@ -60,9 +60,7 @@ function buatTreeDiHtml(array $nodes)
     foreach ($nodes as $item) {
         echo "<li><a href=\"#\">{$item['nav']}</li>";
 
-        if (count($item['childs']) > 0) {
-            buatTreeDiHtml($item['childs']);
-        }
+        buatTreeDiHtml($item['childs']);
     }
 
     echo '</ul>';
