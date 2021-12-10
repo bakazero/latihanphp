@@ -16,7 +16,9 @@ echo '<pre>';
 
 foreach ($array as $key => $value) {
     foreach ($value as $index => $item) {
+        // if ($item % 2 === 1) {
         print_r("[{$key}][{$index}]={$item} ");
+        // }
     }
 
     echo '<br>';
@@ -25,5 +27,5 @@ foreach ($array as $key => $value) {
 // print_r($array[3][1]);
 // die;
 
-echo '<pre>';
+// echo '<pre>';
 // print_r($array);

@@ -49,20 +49,24 @@ $menu = [
     ],
 ];
 
-header('Content-Type: application/json; charset=utf-8');
-print_r(json_encode($menu));
-die;
+// header('Content-Type: application/json; charset=utf-8');
+// print_r(json_encode($menu));
+// die;
 
-function bebas(int $x)
+function buatTreeDiHtml(array $nodes)
 {
-    if ($x > 100) {
-        return $x;
+    echo '<ul>';
+
+    foreach ($nodes as $item) {
+        echo "<li><a href=\"#\">{$item['nav']}</li>";
+
+        if (count($item['childs']) > 0) {
+            buatTreeDiHtml($item['childs']);
+        }
     }
 
-    $x = $x + $x;
-
-    return bebas($x);
+    echo '</ul>';
 }
 
-$hasil = bebas(5);
-print_r($hasil);
+
+buatTreeDiHtml($menu);
