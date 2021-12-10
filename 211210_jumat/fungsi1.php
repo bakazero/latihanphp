@@ -4,7 +4,7 @@
 
 function y($x, $c)
 {
-    $result = $x . $x + $x + $c;
+    $result = $x * $x + $x + $c;
     return $result;
 }
 
