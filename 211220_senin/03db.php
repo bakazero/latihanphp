@@ -10,7 +10,7 @@ $dotenv->load();
 // $db = new PDO('mysql:host=localhost;dbname=databaseName', 'username', 'password');
 $db = new PDO("{$_ENV['DB_CONNECTION']}:host={$_ENV['DB_HOST']};dbname={$_ENV['DB_DATABASE']}", $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
 
-$sql = "SELECT * FROM tag";
+$sql = "SELECT * FROM account";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 

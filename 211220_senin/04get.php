@@ -4,7 +4,7 @@ require_once '../function.php';
 
 $db = dbConnection();
 
-$sql = "SELECT * FROM tag";
+$sql = "SELECT * FROM account";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 
