@@ -7,4 +7,4 @@ require_once '../vendor/autoload.php';
 $dotenv = Dotenv::createImmutable('../');
 $dotenv->load();
 
-var_dump($_ENV);
+print_r($_ENV);

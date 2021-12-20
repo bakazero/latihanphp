@@ -8,6 +8,7 @@ $sql = "SELECT * FROM tag";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 
+// $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-print_r($result);
+dd($result);
