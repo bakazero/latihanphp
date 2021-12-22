@@ -22,10 +22,9 @@ $count = $stmt->fetch(PDO::FETCH_ASSOC);
 
 dd([
     'data' => $length,
-    'multi dimensi' => $length[2]['length'],
+    'multi dimensi' => "id: {$length[1]['id']}, length: {$length[1]['length']}",
     'jumlah baris' => $count['count'],
 ]);
-
 
 // pelajari fungsi sql lainnya
 // referensi https://www.w3schools.com/mySQl/default.asp
