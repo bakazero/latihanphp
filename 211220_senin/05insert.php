@@ -8,6 +8,7 @@ $db = dbConnection();
 
 $sql = "INSERT INTO account (username, password, email, avatar, balance, description)
     VALUES (?, ?, ?, ?, ?, ?)";
+
 $stmt = $db->prepare($sql);
 $stmt->execute([
     $faker->userName,
