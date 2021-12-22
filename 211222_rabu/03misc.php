@@ -25,3 +25,8 @@ dd([
     'multi dimensi' => $length[2]['length'],
     'jumlah baris' => $count['count'],
 ]);
+
+
+// pelajari fungsi sql lainnya
+// referensi https://www.w3schools.com/mySQl/default.asp
+// min, max, count, avg, sum
