@@ -6,7 +6,7 @@ $db = dbConnection();
 
 // LENGTH
 
-$sql = "SELECT id, description, LENGTH(description) as length FROM account";
+$sql = "SELECT id, description, LENGTH(description) as length FROM account WHERE LENGTH(description) < 125";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 
@@ -14,13 +14,14 @@ $length = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // COUNT
 
-$sql = "SELECT COUNT(*) FROM account";
+$sql = "SELECT COUNT(*) as count FROM account WHERE LENGTH(description) < 125";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 
-$count = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$count = $stmt->fetch(PDO::FETCH_ASSOC);
 
 dd([
-    'length' => $length,
-    'count'  => $count,
+    'data' => $length,
+    'multi dimensi' => $length[2]['length'],
+    'jumlah baris' => $count['count'],
 ]);
