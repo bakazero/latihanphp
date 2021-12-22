@@ -16,4 +16,6 @@ foreach ($result as $key => $value) {
         'id' => $value['id'],
         'email' => $value['email'],
     ]);
+
+    echo "\n";
 }
