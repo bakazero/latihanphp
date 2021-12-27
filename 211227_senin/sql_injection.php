@@ -4,7 +4,7 @@ require_once '../function.php';
 
 $db = dbConnection();
 
-$test = '3333 OR 1=1';
+$test = '3333 OR 1=1 --';
 
 // contoh sql injection
 
