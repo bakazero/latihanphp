@@ -12,14 +12,14 @@ function deleteData(PDO $db)
     $stmt->execute();
 }
 
-function insertData(PDO $db, array $data)
+function insertData_(PDO $db, array $data)
 {
     $sql = "INSERT INTO __coba_tr (title, body, views, created_at) VALUES (?, ?, ?, ?)";
     $stmt = $db->prepare($sql);
     $stmt->execute($data);
 }
 
-function showResult(PDO $db)
+function showResult_(PDO $db)
 {
     $sql = "SELECT * FROM __coba_tr";
     $stmt = $db->prepare($sql);
@@ -45,15 +45,15 @@ try {
             $faker->dateTimeThisMonth()->format('Y-m-d H:i:s'),
         ];
 
-        insertData($db, $data);
+        insertData_($db, $data);
     }
 
     $db->commit();
 } catch (Throwable $th) {
     $db->rollBack();
     print_r('Gagal' . "\n\n");
-    dd(showResult($db));
+    dd(showResult_($db));
 }
 
 print_r('Sukses' . "\n\n");
-dd(showResult($db));
+dd(showResult_($db));
