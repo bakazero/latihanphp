@@ -17,3 +17,24 @@ function dd($var)
     print_r($var);
     die;
 }
+
+// DATA
+
+function truncateTable(PDO $db, string $tableName)
+{
+    $sql = "TRUNCATE TABLE {$tableName}";
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+}
+
+function insertData(PDO $db, string $table, array $data)
+{
+    $sql = sprintf(
+        "INSERT INTO %s (%s) VALUES(%s)",
+        $table,
+        implode(", ", array_keys($data)),
+        ":" . implode(", :", array_keys($data))
+    );
+    $stmt = $db->prepare($sql);
+    $stmt->execute($data);
+}

@@ -7,21 +7,21 @@ $db = dbConnection();
 
 function deleteData(PDO $db)
 {
-    $sql = "TRUNCATE TABLE coba_tr";
+    $sql = "TRUNCATE TABLE __coba_tr";
     $stmt = $db->prepare($sql);
     $stmt->execute();
 }
 
 function insertData(PDO $db, array $data)
 {
-    $sql = "INSERT INTO coba_tr (title, body, views, created_at) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO __coba_tr (title, body, views, created_at) VALUES (?, ?, ?, ?)";
     $stmt = $db->prepare($sql);
     $stmt->execute($data);
 }
 
 function showResult(PDO $db)
 {
-    $sql = "SELECT * FROM coba_tr";
+    $sql = "SELECT * FROM __coba_tr";
     $stmt = $db->prepare($sql);
     $stmt->execute();
 
