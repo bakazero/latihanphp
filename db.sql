@@ -1,11 +1,7 @@
 -- Adminer 4.8.1 MySQL 8.0.18 dump
 
-SET NAMES utf8;
-SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
-
-SET NAMES utf8mb4;
 
 DROP TABLE IF EXISTS `__coba_tr`;
 CREATE TABLE `__coba_tr` (
@@ -15,7 +11,7 @@ CREATE TABLE `__coba_tr` (
   `views` int(11) NOT NULL,
   `created_at` timestamp NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 
 DROP TABLE IF EXISTS `account`;
@@ -28,7 +24,7 @@ CREATE TABLE `account` (
   `balance` double NOT NULL,
   `description` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 
 DROP TABLE IF EXISTS `goods`;
@@ -40,7 +36,7 @@ CREATE TABLE `goods` (
   `stock` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 
 DROP TABLE IF EXISTS `transaction`;
@@ -51,7 +47,7 @@ CREATE TABLE `transaction` (
   PRIMARY KEY (`id`),
   KEY `account_id` (`account_id`),
   CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 
 DROP TABLE IF EXISTS `transaction_detail`;
@@ -66,7 +62,7 @@ CREATE TABLE `transaction_detail` (
   CONSTRAINT `transaction_detail_ibfk_1` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`id`),
   CONSTRAINT `transaction_detail_ibfk_2` FOREIGN KEY (`transaction_id`) REFERENCES `transaction` (`id`),
   CONSTRAINT `transaction_detail_ibfk_3` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 
 -- 2021-12-29 09:19:19
