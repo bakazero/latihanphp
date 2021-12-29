@@ -52,5 +52,4 @@ CREATE TABLE `transaction_detail` (
   KEY `goods_id` (`goods_id`),
   CONSTRAINT `transaction_detail_ibfk_1` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`id`),
   CONSTRAINT `transaction_detail_ibfk_2` FOREIGN KEY (`transaction_id`) REFERENCES `transaction` (`id`),
-  CONSTRAINT `transaction_detail_ibfk_3` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`id`)
 );
