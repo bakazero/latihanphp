@@ -1,8 +1,3 @@
--- Adminer 4.8.1 MySQL 8.0.18 dump
-
-SET foreign_key_checks = 0;
-SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
-
 DROP TABLE IF EXISTS `__coba_tr`;
 CREATE TABLE `__coba_tr` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -12,7 +7,6 @@ CREATE TABLE `__coba_tr` (
   `created_at` timestamp NOT NULL,
   PRIMARY KEY (`id`)
 );
-
 
 DROP TABLE IF EXISTS `account`;
 CREATE TABLE `account` (
@@ -26,7 +20,6 @@ CREATE TABLE `account` (
   PRIMARY KEY (`id`)
 );
 
-
 DROP TABLE IF EXISTS `goods`;
 CREATE TABLE `goods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -38,7 +31,6 @@ CREATE TABLE `goods` (
   PRIMARY KEY (`id`)
 );
 
-
 DROP TABLE IF EXISTS `transaction`;
 CREATE TABLE `transaction` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -48,7 +40,6 @@ CREATE TABLE `transaction` (
   KEY `account_id` (`account_id`),
   CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`)
 );
-
 
 DROP TABLE IF EXISTS `transaction_detail`;
 CREATE TABLE `transaction_detail` (
@@ -63,6 +54,3 @@ CREATE TABLE `transaction_detail` (
   CONSTRAINT `transaction_detail_ibfk_2` FOREIGN KEY (`transaction_id`) REFERENCES `transaction` (`id`),
   CONSTRAINT `transaction_detail_ibfk_3` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`id`)
 );
-
-
--- 2021-12-29 09:19:19
