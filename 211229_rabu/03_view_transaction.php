@@ -16,10 +16,17 @@ $data = [
 
 // transaction
 
-$sql = "SELECT username, created_at
+$toPay = "SELECT SUM(sq_td.ammount * sq_g.price) 
+    FROM transaction_detail sq_td
+    JOIN goods sq_g ON sq_g.id = sq_td.goods_id
+    WHERE sq_td.transaction_id = t.id";
+
+$sql = "SELECT username, created_at, ({$toPay}) to_pay
     FROM transaction t
     JOIN account a ON a.id = t.account_id
     WHERE t.id = ?";
+
+// dd($sql);
 
 $stmt = $db->prepare($sql);
 $stmt->execute([
