@@ -94,7 +94,7 @@ try {
     $db->commit();
 } catch (Throwable $th) {
     $db->rollBack();
-    print_r('Gagal');
+    dd($th->getMessage());
 }
 
 print_r('Selesai generate data.');
