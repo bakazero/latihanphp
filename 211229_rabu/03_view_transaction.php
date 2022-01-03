@@ -16,12 +16,12 @@ $data = [
 
 // transaction
 
-$toPay = "SELECT SUM(sq_td.ammount * sq_g.price) 
+$totalPay = "SELECT SUM(sq_td.ammount * sq_g.price) 
     FROM transaction_detail sq_td
     JOIN goods sq_g ON sq_g.id = sq_td.goods_id
     WHERE sq_td.transaction_id = t.id";
 
-$sql = "SELECT username, created_at, ({$toPay}) to_pay
+$sql = "SELECT username, created_at, ({$totalPay}) total_pay
     FROM transaction t
     JOIN account a ON a.id = t.account_id
     WHERE t.id = ?";
@@ -41,7 +41,7 @@ if ($transaction === false) {
 
 // transaction_detail
 
-$sql = "SELECT g.`name` goods, td.ammount
+$sql = "SELECT g.`name` goods, td.ammount, g.price unit_price, (g.price * td.ammount) total
     FROM transaction_detail td
     JOIN goods g ON g.id = td.goods_id
     WHERE td.transaction_id = ?";
