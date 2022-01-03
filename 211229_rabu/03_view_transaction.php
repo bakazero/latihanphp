@@ -11,7 +11,7 @@ $db = dbConnection();
 // data
 
 $data = [
-    'transaction_id' => 73
+    'transaction_id' => 3
 ];
 
 // transaction
@@ -21,7 +21,7 @@ $totalPay = "SELECT SUM(sq_td.ammount * sq_g.price)
     JOIN goods sq_g ON sq_g.id = sq_td.goods_id
     WHERE sq_td.transaction_id = t.id";
 
-$sql = "SELECT username, created_at, ({$totalPay}) total_pay
+$sql = "SELECT username, created_at, ( {$totalPay} ) sub_query
     FROM transaction t
     JOIN account a ON a.id = t.account_id
     WHERE t.id = ?";
@@ -51,7 +51,21 @@ $stmt->execute([
     $data['transaction_id']
 ]);
 
-$detail =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+$detail = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$transaction['to_pay'] = 0;
+
+foreach ($detail as $key => $value) {
+    $transaction['to_pay'] = $transaction['to_pay'] + $value['total'];
+
+    $detail[$key]['unit_price'] = number_format($value['unit_price'], 2, '.', ',');
+    $detail[$key]['total'] = number_format($value['total'], 2, '.', ',');
+}
+
+$transaction['to_pay'] = number_format($transaction['to_pay'], 2, '.', ',');
+$transaction['sub_query'] = number_format($transaction['sub_query'], 2, '.', ',');
+
+// unset($transaction['sub_query']);
 
 $hasil = [
     'transaction' => $transaction,
