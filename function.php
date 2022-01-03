@@ -2,6 +2,8 @@
 
 use Dotenv\Dotenv;
 
+date_default_timezone_set('Asia/Jakarta');
+
 require_once 'vendor/autoload.php';
 
 $dotenv = Dotenv::createImmutable(__DIR__);

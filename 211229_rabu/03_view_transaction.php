@@ -11,8 +11,7 @@ $db = dbConnection();
 // data
 
 $data = [
-    'account_id' => 3,
-    'transaction_id' => 23
+    'transaction_id' => 73
 ];
 
 // transaction
@@ -27,7 +26,7 @@ $stmt->execute([
     $data['transaction_id']
 ]);
 
-$transaction =  $stmt->fetch(PDO::FETCH_ASSOC);
+$transaction = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($transaction === false) {
     dd('Data tidak ditemukan');
@@ -47,9 +46,9 @@ $stmt->execute([
 
 $detail =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$result = [
+$hasil = [
     'transaction' => $transaction,
     'detail' => $detail,
 ];
 
-dd($result);
+dd($hasil);

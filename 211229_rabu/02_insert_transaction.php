@@ -26,9 +26,15 @@ $data = [
         [
             'goods_id' => 8,
             'ammount' => 2
-        ]
+        ],
+        [
+            'goods_id' => 2,
+            'ammount' => 2
+        ],
     ],
 ];
+
+// dd($data);
 
 // insert
 
@@ -58,6 +64,7 @@ try {
 
     foreach ($data['purchase'] as $item) {
         $sArray[] = "(?, ?, ?)";
+
         $sqlData[] = $transactionId;
         $sqlData[] = $item['goods_id'];
         $sqlData[] = $item['ammount'];
