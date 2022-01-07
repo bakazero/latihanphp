@@ -29,10 +29,10 @@ $data = [
             'goods_id' => 8,
             'ammount' => 2
         ],
-        [
-            'goods_id' => 2,
-            'ammount' => 2
-        ],
+        // [
+        //     'goods_id' => 2,
+        //     'ammount' => 2
+        // ],
     ],
 ];
 
