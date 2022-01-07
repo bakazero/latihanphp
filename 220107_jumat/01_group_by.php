@@ -1,9 +1,6 @@
 <?php
 
-// fitur topup untuk user
-
 require_once '../function.php';
-require_once './05_fungsi_yang_digunakan.php';
 
 $faker = Faker\Factory::create();
 
