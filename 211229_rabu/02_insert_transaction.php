@@ -4,6 +4,7 @@
 // ke table transaction dan transaction_detail
 
 require_once '../function.php';
+require_once './05_fungsi_yang_digunakan.php';
 
 $faker = Faker\Factory::create();
 
@@ -14,6 +15,7 @@ $db = dbConnection();
 $data = [
     'account_id' => 3,
     'current_date' => date('Y-m-d H:i:s'),
+    'currency' => 'IDR',
     'purchase' => [
         [
             'goods_id' => 3,
@@ -34,48 +36,25 @@ $data = [
     ],
 ];
 
-// dd($data);
-
-// insert
-
-$transactionId = null;
-
 try {
     $db->beginTransaction();
 
-    // insert transaction
+    // get user balance
+    $user = getUser($db, $data['account_id']);
 
-    $sql = "INSERT INTO `transaction` (account_id, created_at)
-        VALUES (?, ?)";
+    // insert transaction + detail
+    $transactionId = insertTransaction($db, $data);
 
-    $stmt = $db->prepare($sql);
-    $stmt->execute([
-        $data['account_id'],
-        $data['current_date'],
-    ]);
+    // get toPay
+    $transaction = getToPay($db, $transactionId);
 
-    $transactionId = $db->lastInsertId();
+    // validation
+    $validation = paymentValidation($user['balance'], $transaction['to_pay']);
 
-    // insert transaction_detail
-
-    $sql = "INSERT INTO `transaction_detail` (transaction_id, goods_id, ammount) VALUES ";
-    $sqlData = [];
-    $sArray = [];
-
-    foreach ($data['purchase'] as $item) {
-        $sArray[] = "(?, ?, ?)";
-
-        $sqlData[] = $transactionId;
-        $sqlData[] = $item['goods_id'];
-        $sqlData[] = $item['ammount'];
+    if ($validation === true) {
+        // update balance
+        paidUserBalance($db, $data['account_id'], $transaction['to_pay']);
     }
-
-    $sql = $sql . implode(', ', $sArray);
-
-    // dd($sql);
-
-    $stmt = $db->prepare($sql);
-    $stmt->execute($sqlData);
 
     $db->commit();
 } catch (Throwable $th) {
@@ -83,4 +62,28 @@ try {
     dd($th->getMessage());
 }
 
-dd($transactionId);
+if ($validation === true) {
+    // success response
+    dd([
+        'success' => true,
+        'message' => 'Transaksi Berhasil.',
+        'data' => [
+            'transaction_id' => $transactionId,
+            'old_balance' => $data['currency'] . ' ' . number_format($user['balance'], 2, '.', ','),
+            'total_pay' => $data['currency'] . ' ' . number_format($transaction['to_pay'], 2, '.', ','),
+            'new_balance' => $data['currency'] . ' ' . number_format($user['balance'] - $transaction['to_pay'], 2, '.', ','),
+        ],
+    ]);
+} else {
+    // failed response
+    dd([
+        'success' => false,
+        'message' => 'Transaksi Gagal.',
+        'data' => [
+            'transaction_id' => $transactionId,
+            'balance' => $data['currency'] . ' ' . number_format($user['balance'], 2, '.', ','),
+            'total_pay' => $data['currency'] . ' ' . number_format($transaction['to_pay'], 2, '.', ','),
+            'deficiency' => $data['currency'] . ' ' . number_format($user['balance'] - $transaction['to_pay'], 2, '.', ','),
+        ],
+    ]);
+}
