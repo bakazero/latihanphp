@@ -65,7 +65,7 @@ try {
 if ($validation === true) {
     // success response
     dd([
-        'success' => true,
+        'success' => 1,
         'message' => 'Transaksi Berhasil.',
         'data' => [
             'transaction_id' => $transactionId,
@@ -77,7 +77,7 @@ if ($validation === true) {
 } else {
     // failed response
     dd([
-        'success' => false,
+        'success' => 0,
         'message' => 'Transaksi Gagal.',
         'data' => [
             'transaction_id' => $transactionId,

@@ -31,7 +31,7 @@ try {
 }
 
 dd([
-    'success' => true,
+    'success' => 1,
     'message' => 'Top-up Berhasil.',
     'data' => [
         'old_balance' => $data['currency'] . ' ' . number_format($user['balance'], 2, '.', ','),
